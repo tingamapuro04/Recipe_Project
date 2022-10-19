@@ -1,0 +1,25 @@
+<h1><%= @inventory.name %></h1>
+
+<%= link_to 'Add food',"/inventory_foods/#{@inventory.id}/new" %>
+
+
+<div>
+    <table>
+    <thead>
+      <tr>
+        <th>Food</th>
+        <th>Quantity</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @foods.each do |food| %>
+        <tr>
+          <td><%= food.food.name %></td>
+          <td><%= food.quantity %></td>
+          <td><%= button_to 'Delete', "/inventory_foods/#{@inventory.id}/destroy/#{food.id}", method: :delete %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

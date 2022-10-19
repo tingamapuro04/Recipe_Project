@@ -1,1 +1,23 @@
-<p>Great inventories are here</p>
+<div class="container">
+    <% if @inventories.empty? %>
+    <h4>You have no inventories</h4>
+    <%= link_to 'Add new inventory', new_user_inventory_path %>
+       <% @inventories.each do |inventory| %>
+    
+    <div>
+      <div>
+        <h2>
+           <%= link_to inventory.name, user_inventory_path(inventory.user_id, inventory)%>
+        </h2>
+
+        <% if can? :destory, inventory%>
+            <%= button_to 'delete', user_inventory_path(inventory.user_id, inventory), method: :delete %>
+        <% end %>
+      </div>
+
+      <p> Click on the inventory to see all kinds of foods in that particular inventory </p>
+    </div>
+        <% end %>
+        
+    <% end %>
+</div>
